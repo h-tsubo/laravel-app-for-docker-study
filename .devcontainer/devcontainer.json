@@ -1,0 +1,21 @@
+{
+    "name": "Laravel + Docker",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/var/www/html",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash"
+            },
+            "extensions": [
+                "xdebug.php-pack",
+                "onecentlin.laravel-blade",
+                "ryannaddy.laravel-artisan",
+                "bmewburn.vscode-intelephense-client"
+            ]
+        }
+    }, 
+    "postCreateCommand": "composer install && php artisan key:generate",
+    "remoteUser": "root"
+}
