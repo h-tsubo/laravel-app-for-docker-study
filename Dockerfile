@@ -10,3 +10,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # 作業ディレクトリ
 WORKDIR /var/www/html
+
+#サーバーを自動で起動する
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+
