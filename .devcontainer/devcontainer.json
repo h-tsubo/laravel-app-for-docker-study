@@ -16,7 +16,7 @@
             ]
         }
     }, 
-    "postCreateCommand": "composer install && npm install && php artisan key:generate",
-    "postStartCommand": "npm run dev",
+    "postCreateCommand": "composer install && composer require barryvdh/laravel-debugbar --dev && php artisan key:generate && npm install && npm run dev && echo 'DEBUGBAR_ENABLED=true' >> .env",
+    "postStartCommand": "npm run dev -- --host",
     "remoteUser": "root"
 }
