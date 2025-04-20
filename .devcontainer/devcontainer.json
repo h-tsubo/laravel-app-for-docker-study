@@ -16,6 +16,7 @@
             ]
         }
     }, 
-    "postCreateCommand": "composer install && php artisan key:generate",
+    "postCreateCommand": "composer install && npm install && php artisan key:generate",
+    "postStartCommand": "npm run dev",
     "remoteUser": "root"
 }
