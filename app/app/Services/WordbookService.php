@@ -41,11 +41,31 @@ class WordbookService
             throw new \InvalidArgumentException('終了IDが最大IDを超えています。');
         }
 
-        return DB::table($table)
+        $words = DB::table($table)
             ->whereBetween('id', [$startId, $endId])
             ->inRandomOrder()
             ->limit($count)
             ->get();
+
+        DB::table('wordbook_tests')->insert([
+            'book' => $book,
+            'start_id' => $startId,
+            'end_id' => $endId,
+            'count' => $count,
+            'test_data' => json_encode($words->toArray(), JSON_UNESCAPED_UNICODE),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        
+        $overCount = DB::table('wordbook_tests')->count() - 100;
+        if ($overCount > 0) {
+            DB::table('wordbook_tests')
+                ->orderBy('created_at')
+                ->limit($overCount)
+                ->delete();
+        }
+
+        return $words;
     }
 
     /**
