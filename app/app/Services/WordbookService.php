@@ -47,7 +47,7 @@ class WordbookService
             ->limit($count)
             ->get();
 
-        DB::table('wordbook_tests')->insert([
+        DB::table('wordbook_test_histories')->insert([
             'book' => $book,
             'start_id' => $startId,
             'end_id' => $endId,
@@ -56,10 +56,10 @@ class WordbookService
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        
-        $overCount = DB::table('wordbook_tests')->count() - 100;
+
+        $overCount = DB::table('wordbook_test_histories')->count() - 100;
         if ($overCount > 0) {
-            DB::table('wordbook_tests')
+            DB::table('wordbook_test_histories')
                 ->orderBy('created_at')
                 ->limit($overCount)
                 ->delete();
