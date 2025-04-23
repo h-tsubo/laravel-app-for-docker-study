@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wordbook_tests', function (Blueprint $table) {
+        Schema::create('wordbook_test_histories', function (Blueprint $table) {
             $table->id();
             $table->string('book');
             $table->unsignedInteger('start_id');
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('wordbook_tests');
+        Schema::dropIfExists('wordbook_test_histories');
     }
 };

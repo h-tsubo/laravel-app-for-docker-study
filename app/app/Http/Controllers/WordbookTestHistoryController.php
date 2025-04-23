@@ -18,7 +18,7 @@ class WordbookTestHistoryController extends Controller
 
     public function show(?int $id = null)
     {
-        $query = DB::table('wordbook_tests')->orderByDesc('created_at');
+        $query = DB::table('wordbook_test_histories')->orderByDesc('created_at');
 
         $test = $id ? $query->where('id', $id)->firstOrFail() : $query->first();
 
@@ -29,13 +29,13 @@ class WordbookTestHistoryController extends Controller
         $words = null;
 
         if ($test) {
-            $newerId = DB::table('wordbook_tests')
+            $newerId = DB::table('wordbook_test_histories')
                 ->where('id', '>', $test->id)
                 ->orderBy('id')
                 ->first()
                 ->id ?? null;
 
-            $olderId = DB::table('wordbook_tests')
+            $olderId = DB::table('wordbook_test_histories')
                 ->where('id', '<', $test->id)
                 ->orderByDEsc('id')
                 ->first()
