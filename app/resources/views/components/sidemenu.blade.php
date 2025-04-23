@@ -13,5 +13,8 @@
         <li style="margin-bottom: 10px;">
             <a href="{{ route('wordbook.test', ['book' => 'sokutan-jokyu']) }}" style="color: #f0f0f0; text-decoration: none;">速読英単語上級編</a>
         </li>
+        <li style="margin-bottom: 10px;">
+            <a href="{{ route('wordbook.test-history') }}" style="color: #f0f0f0; text-decoration: none;">テスト履歴</a>
+        </li>
     </ul>
 </aside>

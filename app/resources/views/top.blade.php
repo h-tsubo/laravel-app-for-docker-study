@@ -60,25 +60,25 @@
 
     <div class="container my-4">
         <div class="wordbook-container">
-            <a href="/eitango" class="wordbook-link">
+            <a href="{{ route('wordbook.test', ['book' => 'system-eitango']) }}" class="wordbook-link">
                 <div class="wordbook-card">
                     <h4 class="text-dark">システム英単語</h4>
                     <img src="/images/system-eitango.jpg" alt="システム英単語" class="wordbook-image">
                 </div>
             </a>
-            <a href="/eitango-basic" class="wordbook-link">
+            <a href="{{ route('wordbook.test', ['book' => 'system-eitango-basic']) }}" class="wordbook-link">
                 <div class="wordbook-card">
                     <h4 class="text-dark">システム英単語Basic</h4>
                     <img src="/images/system-eitango-basic.jpg" alt="システム英単語Basic" class="wordbook-image">
                 </div>
             </a>
-            <a href="/target1900" class="wordbook-link">
+            <a href="{{ route('wordbook.test', ['book' => 'target1900']) }}" class="wordbook-link">
                 <div class="wordbook-card">
                     <h4 class="text-dark">Target1900</h4>
                     <img src="/images/target1900.jpg" alt="Target1900" class="wordbook-image">
                 </div>
             </a>
-            <a href="/sokudoku-advanced" class="wordbook-link">
+            <a href="{{ route('wordbook.test', ['book' => 'sokutan-jokyu']) }}" class="wordbook-link">
                 <div class="wordbook-card">
                     <h4 class="text-dark">速読英単語上級編</h4>
                     <img src="/images/sokutan-jokyu.jpg" alt="速読英単語上級編" class="wordbook-image">
