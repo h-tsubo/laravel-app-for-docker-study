@@ -21,7 +21,6 @@
             <div class="text-center mt-4">
                 <button id="showAnswerButton" class="btn btn-warning">答えを表示する</button>
             </div>
-            {{ $olderId }}
             <div class="d-flex justify-content-between align-items-center mb-4">
                 @if ($newerId)
                     <a href="{{ route('wordbook.test-history', [$newerId]) }}" class="btn btn-outline-primary">◀︎ 次のテスト</a>

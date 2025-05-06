@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Wordbook;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class WordbookTestRequest extends FormRequest
 {
@@ -30,5 +32,15 @@ class WordbookTestRequest extends FormRequest
                 $validator->errors()->add('count', '取得個数が範囲を超えています。');
             }
         });
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            redirect()
+                ->route('wordbook.test', ['book' => $this->route('book')]) // ★ここにリダイレクトしたいルート名を書く
+                ->withErrors($validator)
+                ->withInput()
+        );
     }
 }
