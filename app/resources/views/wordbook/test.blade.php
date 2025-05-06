@@ -33,7 +33,7 @@
         <div class="d-flex align-items-center flex-wrap gap-3 mb-4">
             <button id="showAnswerButton" class="btn btn-warning">答えを表示する</button>
 
-            <form action="{{ route('wordbook.test', ['book' => $book]) }}" method="GET" class="d-flex align-items-center flex-wrap gap-2">
+            <form action="{{ route('wordbook.generate-test', ['book' => $book]) }}" method="GET" class="d-flex align-items-center flex-wrap gap-2">
                 <div class="d-flex align-items-center">
                     <label for="start" class="me-1 mb-0">範囲：</label>
                     <input type="number" name="start" id="start" value="{{ request('start', 1) }}" class="form-control form-control-sm" placeholder="Start ID" style="width: 100px;">
@@ -46,46 +46,52 @@
                     <input type="number" name="count" id="count" value="{{ request('count', 50) }}" class="form-control form-control-sm" placeholder="Count" style="width: 80px;">
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-sm">再取得</button>
+                <button type="submit" class="btn btn-primary btn-sm">テスト生成</button>
             </form>
         </div>
         <div class="row">
-            <!-- 左側：問題 -->
-            <div class="col-md-6">
-                <h4>問題</h4>
-                <ul id="wordList" style="list-style: none; padding-left: 1.5em;">
-                    @foreach ($words as $index => $word)
-                        <li>
-                            ({{ $index + 1 }}) {{ $word->word }}
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-
-            <!-- 右側：答え（最初は隠す） -->
-            <div class="col-md-6" id="answerSection" style="display: none;">
-                <h4>答え</h4>
-                <table class="table table-striped table-bordered">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">単語</th>
-                            <th scope="col">意味</th>
-                            <th scope="col">ID</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            @if ($words)
+                <!-- 左側：問題 -->
+                <div class="col-md-6">
+                    <h4>問題</h4>
+                    <ul id="wordList" style="list-style: none; padding-left: 1.5em;">
                         @foreach ($words as $index => $word)
-                            <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $word->word }}</td>
-                                <td>{{ $word->meaning }}</td>
-                                <td>{{ $word->id }}</td>
-                            </tr>
+                            <li>
+                                ({{ $index + 1 }}) {{ $word->word }}
+                            </li>
                         @endforeach
-                    </tbody>
-                </table>
-            </div>
+                    </ul>
+                </div>
+
+                <!-- 右側：答え（最初は隠す） -->
+                <div class="col-md-6" id="answerSection" style="display: none;">
+                    <h4>答え</h4>
+                    <table class="table table-striped table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">単語</th>
+                                <th scope="col">意味</th>
+                                <th scope="col">ID</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($words as $index => $word)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $word->word }}</td>
+                                    <td>{{ $word->meaning }}</td>
+                                    <td>{{ $word->id }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @else
+                <div class="alert alert-warning">
+                    テストを出力してください！
+                </div>
+            @endif
         </div>
     </div>
 
